@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+** HTMLToastJS demo
+** copyright 2015 Jim Bergman
+** v1.00 Oct 16, 2015 initial release
+
+The MIT License (MIT)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>ToastJS demo</title>
+
+  <link rel="stylesheet" href="htmltoast.css"></link>
+  <style type="text/css">
+    body {
+      background-color: #003300;
+      color: yellow;
+      font-family: sans-serif;
+      margin: 30% 0;
+      text-align: center;
+      width: 100%;
+    }
+    h2 {
+      -webkit-margin-after: 0;
+      color:snow;
+    }
+    h4 {
+      -webkit-margin-before: 0;
+    }
+    a {
+      color: cyan;
+      font-style: italic;
+    }
+    button {
+      background-color: snow;
+      border-radius: 10px;
+      font-size: 20px;
+      padding: 10px 30px;
+    }
+    input {
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+    #testText {
+      width: 90%;
+      max-width: 500px;
+      min-width: 300px;
+    }
+    #testTimeout {
+      text-align: center;
+    }
+    .timeoutspan {
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>HTMLtoastJS Demo</h2>
+  <h4><a href="https://github.com/jimbergman/HTMLtoastJS">available on GitHub</a></h4>
+
+  <div>
+    <input type="text" id="testText" placeholder="HelloWorld from ToastJS!" size="30"><br \>
+    <input type="text" id="testTimeout" placeholder="3000" size="6"> <span class="timeoutspan">Timeout in 1/1000 seconds</span>
+  </div>
+
+  <button id="btnShowToast">show toast</button>
+
+  <script type="text/javascript" src="htmltoast.js"></script>
+  <script type="text/javascript">
+  var myToast;
+  document.getElementById('btnShowToast').addEventListener('click', showToast);
+  function showToast() {
+    myToast = toast.show( document.getElementById('testText').value || document.getElementById('testText').placeholder, document.getElementById('testTimeout').value || toast.timeout );
+    document.getElementById('btnShowToast').blur();
+    // unit testing
+    console.assert( typeof myToast === 'object' );
+    console.assert( typeof myToast.message === 'string' );
+    console.assert( typeof myToast.timeout === 'number'  &&  myToast.timeout >= toast.mintimeout );
+    console.assert( typeof myToast.callback === 'function' );
+  }
+  </script>
+</body>
+</html>
