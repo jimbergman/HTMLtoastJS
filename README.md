@@ -49,7 +49,8 @@ toast.show( 'message', [timeout, callback] );
 
 To programmatically close a toast, use:
 ```
-toast.slayer();```
+toast.slayer();
+```
 
 NOTE: Opening a toast will close one that is already open, so be careful not to open a bunch quickly, because you will only see the most recent one.
 
